@@ -19,18 +19,20 @@ namespace GET_POST_DanyyilBun.Controllers
         [HttpPost]
         public ActionResult Grades(FormCollection myForm)
         {
-            //Double myNum;
-            //foreach (var x in myForm)
-            //{
-            //     if (Double.TryParse(x, out myNum))
-                
-               
-            //}
-            Double one,two,three;
-            Double.TryParse(myForm["grade0"], out one);
-            Double.TryParse(myForm["grade1"], out two);
-            Double.TryParse(myForm["grade2"], out three);
-            var total = (one + two + three)/3;
+            Double myNum;
+            var keys = myForm.Keys;
+            Double tot = 0;
+            Int32 i = 0;
+            foreach (var x in keys)
+            {
+                if (x.ToString().Contains("grade"))
+                {
+                    Double.TryParse(myForm[x.ToString()], out myNum);
+                    tot += myNum;
+                    i++;
+                }
+            }
+            Double total = tot / i;
             if (total >= 90)
             { ViewBag.Letter = "A"; }
             else if (total >= 80)
@@ -42,7 +44,12 @@ namespace GET_POST_DanyyilBun.Controllers
             else
             { ViewBag.Letter = "F"; }
             ViewBag.Total = total;
-            ViewBag.Entries = 3;
+
+            int sx; int.TryParse(myForm["ViewBG"], out sx);
+            ViewBag.Entries = sx;
+
+
+
             return View();
         }
     }

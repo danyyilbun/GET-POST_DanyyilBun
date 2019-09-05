@@ -4,22 +4,26 @@
 }
 
 <h2>Grades</h2>
-<div id="divisionOne">
+<div id="divisionOne">  
     <button id="addButton" style="float:right;">+</button>
+    <button id="reduceButton" style="float:right;">-</button>
     <form id="form" action="/Grades/Grades" method="post">   
     @{ 
-    for (var i = 0; i < @ViewBag.Entries; i++)
+        
+        for (int i = 0; i < @ViewBag.Entries; i++)
     {
-        var grade = "grade" + @i;
-        var grade2 = "grade " + @i;
-         <br><input type="number" name=@grade id=@grade placeholder=@grade2 min="0" max="100"><br>;
+        String grade = "grade" + @i;
+        String grade2 = "grade " + @i;
+         <br><input type="number" name="@grade" id="@grade" placeholder="@grade2" min="0" max="100"><br>;
     }
     }
-        <br><input id="ViewBG" type="hidden" value=@ViewBag name="ViewBG">
+        <br><input id="ViewBG" type="hidden"
+                   value= "@ViewBag.Entries"
+                   name="ViewBG">
         <br><input type="submit" value="Submit">
     </form>
 </div>
-@*<script>
+<script>
 
     document.getElementById("addButton").addEventListener
         ("click", function () {
@@ -41,16 +45,26 @@
             h.insertAdjacentElement("beforebegin", br2);
             
             
-            document.getElementById("ViewBG").setAttribute("value",vb + 1);
+            document.getElementById("ViewBG").setAttribute("value", (parseInt(vb) + 1));
         });
+        document.getElementById("reduceButton").addEventListener
+         ("click", function () {
+
+             var vb = document.getElementById("ViewBG").getAttribute("value");
+             var js = "grade" + (parseInt(vb) - 1);      
+             document.getElementById(js).previousElementSibling.remove();
+             
+             document.getElementById(js).nextElementSibling.remove();
+             document.getElementById(js).remove();
+              document.getElementById("ViewBG").setAttribute("value", (parseInt(vb) - 1));
+         });
 
 
-
-</script>*@
+</script>
 @{
 
     if (ViewBag.Letter != null && ViewBag.Total != null)
     {
-    <p> Your letter grade is @ViewBag.Letter, and @ViewBag.Total is your numeric grade</p>
+      <p> Your letter grade is @ViewBag.Letter, and @ViewBag.Total is your numeric grade</p>
     }
  }
