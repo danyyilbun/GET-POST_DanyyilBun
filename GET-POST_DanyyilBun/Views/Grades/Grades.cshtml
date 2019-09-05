@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "Grades";
+}
+
+<h2>Grades</h2>
+<div id="divisionOne">
+    <button id="addButton" style="float:right;">+</button>
+    <form id="form" action="/Grades/Grades" method="post">   
+    @{ 
+    for (var i = 0; i < @ViewBag.Entries; i++)
+    {
+        var grade = "grade" + @i;
+        var grade2 = "grade " + @i;
+         <br><input type="number" name=@grade id=@grade placeholder=@grade2 min="0" max="100"><br>;
+    }
+    }
+        <br><input id="ViewBG" type="hidden" value=@ViewBag name="ViewBG">
+        <br><input type="submit" value="Submit">
+    </form>
+</div>
+@*<script>
+
+    document.getElementById("addButton").addEventListener
+        ("click", function () {
+            var node = document.createElement("input");
+            node.setAttribute("type", "number");
+            var vb = document.getElementById("ViewBG").getAttribute("value");
+            var gr = "grade" + vb;
+            node.setAttribute("name", gr);
+            node.setAttribute("id", gr);
+            node.setAttribute("placeholder", "grade " + vb);
+            node.setAttribute("min", "0");
+            node.setAttribute("max","100");
+            document.getElementById("form").appendChild(node);
+            var h = document.getElementById("ViewBG");
+            h.insertAdjacentElement("beforebegin", node);
+            var br1 = document.createElement("br");
+            var br2 = document.createElement("br");
+            node.insertAdjacentElement("afterend", br1);
+            h.insertAdjacentElement("beforebegin", br2);
+            
+            
+            document.getElementById("ViewBG").setAttribute("value",vb + 1);
+        });
+
+
+
+</script>*@
+@{
+
+    if (ViewBag.Letter != null && ViewBag.Total != null)
+    {
+    <p> Your letter grade is @ViewBag.Letter, and @ViewBag.Total is your numeric grade</p>
+    }
+ }
