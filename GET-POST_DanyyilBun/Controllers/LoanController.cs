@@ -20,10 +20,13 @@ namespace GET_POST_DanyyilBun.Controllers
             ViewData["years"] = years;
             ViewData["rate"] = rate;
             ViewData["investment"] = investment;
-            for (int i = 0; i <= years; i++)
+            var interest = investment;
+            for (int i = 0; i < years; i++)
             {
-                investment *= rate/100;
+                interest += interest * (rate/100);
             }
+            ViewData["investment"] = Convert.ToDecimal(investment).ToString("C");
+            ViewData["interest"] = Convert.ToDecimal(interest).ToString("C"); ;
 
             return View();
         }

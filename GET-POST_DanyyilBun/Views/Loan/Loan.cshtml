@@ -6,6 +6,21 @@
 <h2>Loan</h2>
 <form action="/Loan/Loan" method="POST">
 
-
-    <input type="submit" >
+    <label for="years">For how many :</label><input type="number" min="0" max="999" step="1" placeholder="years" name="years" id="years"><br>
+    <label for="rate">For what :</label><input type="number" min="0" placeholder="rate" name="rate" id="rate"><br>
+    <label for="investment">What is :</label><input type="number" min="0" step="100" placeholder="investment" name="investment" id="investment"><br>
+    <input type="submit" value="Calculate">
 </form>
+            
+            
+
+            
+            
+            @{
+
+                if (ViewData["interest"] != null)
+                {
+                <p>For @ViewData["years"] years with @ViewData["rate"]% rate and @ViewData["investment"] investment would give you @ViewData["interest"] as interest </p> 
+                }
+
+             }
