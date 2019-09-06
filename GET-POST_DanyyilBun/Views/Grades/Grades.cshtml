@@ -16,7 +16,7 @@
         String grade2 = "grade " + @i;
          <br>
 
-                    @if (@ViewData[grade] != null)
+                    if (@ViewData[grade] != null)
                      {
                       <br><input type="number" name="@grade" id="@grade"  value = "@ViewData[grade]" placeholder="@grade2" min="0" max="100">
                     }
@@ -72,6 +72,6 @@
 
     if (ViewBag.Letter != null && ViewBag.Total != null)
     {
-      <p> Your letter grade is @ViewBag.Letter, and @ViewBag.Total is your numeric grade</p>
+      <p> Your letter grade is @ViewBag.Letter, and your numeric grade is @ViewBag.Total%</p>
     }
  }

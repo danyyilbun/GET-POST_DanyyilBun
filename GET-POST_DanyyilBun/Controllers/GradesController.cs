@@ -45,7 +45,7 @@ namespace GET_POST_DanyyilBun.Controllers
             { ViewBag.Letter = "D"; }
             else
             { ViewBag.Letter = "F"; }
-            ViewBag.Total = total;
+            ViewBag.Total = Convert.ToDecimal(total).ToString("F"); ;
 
             int ammountOfEntries;
             int.TryParse(myForm["ViewBG"], out ammountOfEntries);
