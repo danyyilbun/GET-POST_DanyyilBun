@@ -4,31 +4,40 @@
 }
 
 <h2>Grades</h2>
-<div id="divisionOne">  
+<div id="divisionOne">
     <button id="addButton" style="float:right;">+</button>
     <button id="reduceButton" style="float:right;">-</button>
-    <form id="form" action="/Grades/Grades" method="post">   
-    @{ 
-        
-        for (int i = 0; i < @ViewBag.Entries; i++)
+    @using (Html.BeginForm("Grades", "Grades", FormMethod.Post, new { id = "form" }))
     {
-        String grade = "grade" + @i;
-        String grade2 = "grade " + @i;
-         <br>
 
-                    if (@ViewData[grade] != null)
-                     {
-                      <br><input type="number" name="@grade" id="@grade"  value = "@ViewData[grade]" placeholder="@grade2" min="0" max="100">
-                    }
-                    else
-                    {
-                      <br><input type="number" name="@grade" id="@grade" placeholder="@grade2" min="0" max="100"><br>;
-                    }
+
+
+
+        for (int i = 0; i < @ViewBag.Entries; i++)
+        {
+            String grade = "grade" + @i;
+            String grade2 = "grade " + @i;
+            <br>
+
+            if (@ViewData[grade] != null)
+            {
+                <br>
+                @Html.TextBox(@grade, @ViewData[grade], new { type = "number", min = "0", max = "100" })
+                <br>
+            }
+            else
+            {
+                
+                @Html.TextBox(@grade, null, new { type = "number", min = "0", max = "100", placeholder = @grade2 })
+                <br>
+            }
+        }
+
+        <br>
+        @Html.TextBox("ViewBG", (int)@ViewBag.Entries, new { type = "hidden" })
+        <br>
+        @Html.TextBox("Submit", "Submit", new { type = "submit" })
     }
-    }
-        <br><input id="ViewBG" type="hidden" value= "@ViewBag.Entries"  name="ViewBG">
-        <br><input type="submit" value="Submit">
-    </form>
 </div>
 <script>
 
