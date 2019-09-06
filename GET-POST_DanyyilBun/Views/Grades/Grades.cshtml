@@ -14,12 +14,19 @@
     {
         String grade = "grade" + @i;
         String grade2 = "grade " + @i;
-         <br><input type="number" name="@grade" id="@grade" placeholder="@grade2" min="0" max="100"><br>;
+         <br>
+
+                    @if (@ViewData[grade] != null)
+                     {
+                      <br><input type="number" name="@grade" id="@grade"  value = "@ViewData[grade]" placeholder="@grade2" min="0" max="100">
+                    }
+                    else
+                    {
+                      <br><input type="number" name="@grade" id="@grade" placeholder="@grade2" min="0" max="100"><br>;
+                    }
     }
     }
-        <br><input id="ViewBG" type="hidden"
-                   value= "@ViewBag.Entries"
-                   name="ViewBG">
+        <br><input id="ViewBG" type="hidden" value= "@ViewBag.Entries"  name="ViewBG">
         <br><input type="submit" value="Submit">
     </form>
 </div>

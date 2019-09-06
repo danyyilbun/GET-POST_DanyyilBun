@@ -21,18 +21,20 @@ namespace GET_POST_DanyyilBun.Controllers
         {
             Double myNum;
             var keys = myForm.Keys;
-            Double tot = 0;
+            Double total = 0;
             Int32 i = 0;
             foreach (var x in keys)
             {
                 if (x.ToString().Contains("grade"))
                 {
                     Double.TryParse(myForm[x.ToString()], out myNum);
-                    tot += myNum;
+                    ViewData[x.ToString()] = myNum ;
+                    
+                    total += myNum;
                     i++;
                 }
             }
-            Double total = tot / i;
+             total = total / i;
             if (total >= 90)
             { ViewBag.Letter = "A"; }
             else if (total >= 80)
@@ -45,8 +47,9 @@ namespace GET_POST_DanyyilBun.Controllers
             { ViewBag.Letter = "F"; }
             ViewBag.Total = total;
 
-            int sx; int.TryParse(myForm["ViewBG"], out sx);
-            ViewBag.Entries = sx;
+            int ammountOfEntries;
+            int.TryParse(myForm["ViewBG"], out ammountOfEntries);
+            ViewBag.Entries = ammountOfEntries;
 
 
 
